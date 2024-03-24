@@ -13,8 +13,11 @@ opt.autochdir = true		-- aktuelles Verzeichnis
 
 opt.cursorline = true		-- Cursor horizontal
 opt.cursorcolumn = true		-- Cursor vertikal
+opt.colorcolumn = '80'		-- markierung
 
-opt.termguicolors = true 	-- farben aktivieren
+opt.termguicolors = true 	-- mehr farben
+
+opt.lazyredraw = true 	-- schnelleres scrollen
 
 opt.bg="light"
 require("gruvbox").load()

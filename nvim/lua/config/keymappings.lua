@@ -1,6 +1,7 @@
 -- speichern
 vim.keymap.set('n', 'jj',':update<CR>')		
 vim.keymap.set('i','jj','<esc>:update<CR>')
+vim.keymap.set('n','<F3>',':NvimTreeToggle')
 
 -- klammern
 vim.keymap.set('i', '(', '()<left>')
