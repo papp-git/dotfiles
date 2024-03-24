@@ -1,0 +1,205 @@
+% LuaLateX------------------------------------------------------------------
+
+%! TeX program=lualatex
+%\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fontspec}
+\usepackage{unicode-math}   % lädt fontspec
+\usepackage{luacode}
+%\usepackage{lualatex-math}
+
+
+% Sprache ------------------------------------------------------------
+
+%\usepackage[T1]{fontenc} % nicht mit LuaLateX
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{hyphenat}
+%\usepackage{parskip} % Konflikt mit KOMA -Script -> in documentclass
+
+\setlength{\textheight}{760pt}
+% -------------------------------------------------------------------
+
+% Graphik--------------------------------------------------------------
+
+\usepackage[siunitx]{circuitikz}
+\ctikzset{european resistors, 
+    bipoles/cuteswitch/thickness=0.25,
+    }
+
+\usepackage{siunitx}
+\DeclareSIUnit{\liter}{$\ell$}
+\sisetup{
+    locale = DE,
+    per-mode = fraction,
+    %exponent-to-prefix,
+    %prefixes-as-symbols = false,
+}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage{mathrsfs}
+
+\usetikzlibrary{arrows, shadows, positioning}
+
+% tikz-Bilder importieren
+% \includestandalone
+\usepackage[mode=buildnew]{standalone}
+
+\usepackage{graphicx}
+%---------------------------------------------------------------------
+
+% schickere Tabellen
+\usepackage{booktabs}
+
+% Mathe/Physik ------------------------------------------------------
+
+\usepackage{cancel}
+\renewcommand{\CancelColor}{\color{gray}}
+
+\usepackage{esvect} %Vektorpfeile
+
+%--------------------------------------------------------------------
+
+% Pimp my document--------------------------------------------------
+
+\usepackage{fancyhdr}
+\usepackage{tasks}
+\settasks{after-item-skip = 1ex, after-skip=2ex}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+%-------------------------------------------------------------------
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+%\usepackage{fontawesome} % veraltet
+\usepackage{fontawesome5}
+% sonst------------------------------------------------------------
+
+\usepackage{hyperref}
+\usepackage{eurosym}
+
+% ------------------------------------------------------------------
+
+\newcommand{\kariert}[2]{
+    \begin{tikzpicture}
+    \draw[step=0.5cm,color=gray] (0,0) grid (#1 cm ,#2 cm);
+    \end{tikzpicture}}
+
+% exams
+\usepackage{exsheets}
+\SetupExSheets[question]{type=exam}
+\SetupExSheets{solution/print=false}
+
+% Aufgabe box----------------------------------------------------
+\newcounter{aufg}
+
+\newtcolorbox{aufgabe}[1][\faPen]{                                              
+    step=aufg,                         
+    enhanced,
+    colback=orange!10,                                                                  
+    top=10pt, left=0pt, right=0pt,                                                   
+    overlay={%
+        \tikzset{overlay=false, anchor=west, rounded corners}
+        \node[fill=orange!20, text=black,xshift=0.5cm,draw,      % background and textcolor of "Exercise" box
+              minimum height=1.5em] at (frame.north west) (box1){\textbf{Aufgabe
+              \theaufg}}; % position of "Exercise" box
+        \node[text=orange, fill=white,draw,                % background and textcolor of difficulty rating box
+              right = 3mm of box1, ] (difficulty){#1};     % position of difficulty rating box
+    }}
+
+%\newenvironment{aufgabe}[1][]{ 
+%        \refstepcounter{aufg} 
+%        \textbf{Aufgabe \theaufg} \hfill  #1} {\par} 
+
+\newcounter{loesung}
+\newenvironment{lsg}{ 
+        \refstepcounter{loesung} 
+        \textbf{Lösung \theloesung}} {}       
+% -----------------------------------------------------------------
+
+% Kästen ---------------------------------------------------------
+\newenvironment{merke}[1][Merke]{
+    \mdfsetup{
+        frametitle={
+            \tikz[baseline=(current bounding box.east), outer sep=0pt]
+            \node[draw=red, anchor=east, rectangle, fill=red!20, rounded corners=3pt]
+            {\strut #1};
+                },
+        innertopmargin=10pt, linecolor = red!20, linewidth=2pt, topline=true,
+        roundcorner=5pt,
+        backgroundcolor=red!5,
+        frametitleaboveskip = \dimexpr-\ht\strutbox\relax,
+        shadow=true,
+        }
+    \begin{mdframed} \relax }
+    {\end{mdframed}}
+
+%----------------------------------------------------------------    
+
+\newenvironment{kasten}[1][]{
+
+    \ifstrempty{#1}
+        {\mdfsetup{roundcorner=5pt,
+    backgroundcolor=lightgray!20,linecolor=gray, middlelinewidth=2pt,
+    shadow=true,
+    }}
+    {\mdfsetup{
+        frametitle={#1},
+        linecolor=gray, middlelinewidth=2pt, frametitlerule=true,
+        apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={shade,left
+        color=white, right color = lightgray!20}}},
+        frametitlerulecolor=black!60,
+        frametitlerulewidth=1pt,
+        innertopmargin=\topskip,
+        roundcorner=5pt,
+        backgroundcolor=lightgray!20, shadow=true,
+    }}
+    \begin{mdframed}[]
+    }
+    { \end{mdframed} }
+
+%------------------------------------------------------------------
+
+\newenvironment{bsp}[2][Beispiel]{%}[gray]{
+
+    \mdfsetup{
+        frametitle={#1},
+        linecolor=#2, 
+        middlelinewidth=2pt, 
+        apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={shade,left
+        color=#2, right color = #2!20}}},      
+        frametitlerule=true,
+        %frametitlebackgroundcolor=#2!80,
+        frametitlerulecolor=#2!60,
+        frametitlerulewidth=1pt,
+        innertopmargin=\topskip,
+        roundcorner=5pt,
+        backgroundcolor=#2!20, 
+        shadow=true,
+    }
+    \begin{mdframed}
+    }
+    { \end{mdframed} }
+
+
+% ---------------------------------------------------------------
+
+\newcommand{\onestar}{\color{orange} \faStar~\faStar[regular]~\faStar[regular]}
+\newcommand{\twostar}{\color{orange}\faStar~\faStar~\faStar[regular]}
+\newcommand{\threestar}{\color{orange}\faStar~\faStar~\faStar}
+\newcommand{\onehalfstar}{\color{orange}\faStar~\faStarHalf*~\faStar[regular]}
+\newcommand{\twohalfstar}{\color{orange}\faStar~\faStar~\faStarHalf*}
+
+\newcommand{\versuch}{\faFlask~ Versuch:}
+\newcommand{\durchfuehrung}{\faTools~ Durchführung:}
+\newcommand{\beobachtung}{\faEye~ Beobachtung:}
+\newcommand{\auswertung}{\faEdit~ Auswertung:}
+
+% Zeichensätze
+% -------------------------------------------------------------------
+\setmainfont{Linux Libertine O}
+\setsansfont{Open Sans}
+\setmonofont{DejaVu Sans Mono}
+\setmathfont{Asana Math}
