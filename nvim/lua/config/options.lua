@@ -15,10 +15,17 @@ opt.cursorline = true		-- Cursor horizontal
 opt.cursorcolumn = true		-- Cursor vertikal
 opt.colorcolumn = '80'		-- markierung
 
+-- hard-wrap
+opt.wrap = true
+opt.textwidth = 80
+opt.linebreak = true
+opt.breakindent = true  
+
 opt.termguicolors = true 	-- mehr farben
 
 opt.lazyredraw = true 	-- schnelleres scrollen
 
 opt.bg="light"
 require("gruvbox").load()
+
 
