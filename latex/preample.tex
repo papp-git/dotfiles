@@ -17,7 +17,7 @@
 \usepackage{hyphenat}
 %\usepackage{parskip} % Konflikt mit KOMA -Script -> in documentclass
 
-\setlength{\textheight}{760pt}
+\setlength{\textheight}{720pt}
 % -------------------------------------------------------------------
 
 % Graphik--------------------------------------------------------------
@@ -75,6 +75,7 @@
 \tcbuselibrary{skins}
 %\usepackage{fontawesome} % veraltet
 \usepackage{fontawesome5}
+\usepackage{emoji}
 % sonst------------------------------------------------------------
 
 \usepackage{hyperref}
@@ -91,6 +92,14 @@
 \usepackage{exsheets}
 \SetupExSheets[question]{type=exam}
 \SetupExSheets{solution/print=false}
+
+% Punkt zu Komma 2.5 wird zu 2,5 
+\ExplSyntaxOn
+\cs_set_protected:Npn \exsheets_num:n #1
+ {
+  \num{\fp_eval:n{#1}}
+ }
+\ExplSyntaxOff
 
 % Aufgabe box----------------------------------------------------
 \newcounter{aufg}
