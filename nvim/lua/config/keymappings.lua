@@ -21,3 +21,15 @@ vim.keymap.set({"i", "s"}, "<C-e>", function()	--aktuelle Wahl ändern
 		ls.change_choice(1)
 	end
 end, {silent = true})
+
+-- python
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "python ft mappings",
+  group = vim.api.nvim_create_augroup("py_mapping", { clear = true }),
+  pattern = "python",
+  callback = function(opts)
+      vim.keymap.set("n", "<F5>", ":w <bar> :term python3 % <CR>")
+      -- exec '!python3 '.shellescape('%')<CR>")
+  end
+})
+

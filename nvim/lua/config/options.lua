@@ -30,3 +30,4 @@ opt.lazyredraw = true 	-- schnelleres scrollen
 opt.bg="light"
 require("gruvbox").load()
 
+
