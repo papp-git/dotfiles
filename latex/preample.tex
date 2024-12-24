@@ -20,12 +20,17 @@
 \setlength{\textheight}{720pt}
 % -------------------------------------------------------------------
 
-% Graphik--------------------------------------------------------------
+% Farben-----------------------------------------------------------
+\usepackage[dvipsnames]{xcolor}
+%---------------------------------------------------------------------
+% TikZ--------------------------------------------------------------- 
 
 \usepackage[siunitx]{circuitikz}
 \ctikzset{european resistors, 
     bipoles/cuteswitch/thickness=0.25,
     }
+
+\usetikzlibrary{arrows, shadows, positioning, shapes.symbols, shadings, patterns}
 
 \usepackage{siunitx}
 \DeclareSIUnit{\liter}{$\ell$}
@@ -36,19 +41,20 @@
     %prefixes-as-symbols = false,
 }
 
+% Plots ---------------------------------------------------------------
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 
+% -----------------------\mathscr{ABC}-Font-Kalligraphie-----------------------------------
 \usepackage{mathrsfs}
 
-\usetikzlibrary{arrows, shadows, positioning}
 
 % tikz-Bilder importieren
 % \includestandalone
 \usepackage[mode=buildnew]{standalone}
 
 \usepackage{graphicx}
-%---------------------------------------------------------------------
+
 
 % schickere Tabellen
 \usepackage{booktabs}
@@ -67,7 +73,7 @@
 \usepackage{fancyhdr}
 \usepackage{tasks}
 \settasks{after-item-skip = 1ex, after-skip=2ex}
-
+\usepackage{soul} % highlight
 \usepackage[framemethod=TikZ]{mdframed}
 
 %-------------------------------------------------------------------

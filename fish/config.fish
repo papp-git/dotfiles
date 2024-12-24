@@ -7,5 +7,7 @@ function fish_greeting
     echo Zeit: (set_color yellow; date +%T; set_color blue)  $hostname
 end
 
+theme_gruvbox dark
+
 # aliases
 alias ticker="ticker --config ~/ticker.yaml"

@@ -37,7 +37,7 @@ fmta(
 {condition = in_mathzone}
 ),
 -- mathe inline
-s({trig="mk", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+s({trig="yy", regTrig = true, wordTrig = false, snippetType="autosnippet"},
 fmta(
     "\\(<>\\)",
     {i(1)}

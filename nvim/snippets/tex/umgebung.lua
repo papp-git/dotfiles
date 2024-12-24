@@ -25,8 +25,8 @@ s({trig = "mip", snippetType="autosnippet", dscr="minipage"},
 	\begin{minipage}{8cm}
 	<>
 	\end{minipage}
-	\hfill
-	\begin{minipage}{8cm}\raggedleft
+	\hspace{0.5cm}
+	\begin{minipage}{8cm}
 	<>
 	\end{minipage}
 	<>
@@ -43,7 +43,7 @@ s({trig = "mip", snippetType="autosnippet", dscr="minipage"},
 s({trig = "docs", snippetType="autosnippet"},
 fmta(
 [[
-    \documentclass[filesize=12pt, parskip=half-]{scrartcl}
+    \documentclass[fontsize=12pt, parskip=half-]{scrartcl}
     \input{preample.tex}
     \fancyhead[L]{<>} \fancyhead[C]{\textbf{<>}} \fancyhead[R]{<>}
     \fancyfoot{}
@@ -60,5 +60,21 @@ fmta(
     }
 ),
 {condition = line_begin}
+),
+
+-- figure 
+s({trig = "bef", snippetType="autosnippet", dscr="figure"},
+ fmta(
+    [[
+	\begin{figure}[!h]
+	\centering
+	<>
+	\end{figure}
+    ]],
+    {
+	i(1)
+    }
+    ),
+    {condition = line_begin}
 ),
 }

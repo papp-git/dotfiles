@@ -19,7 +19,7 @@ fmta(
 -- graphics
 s({trig="inc", snippetType="autosnippet"},
 fmta(
-    "\\includegraphics[width=<>\\textwidth]{<>}",
+    "\\includegraphics[width=<>\\textwidth]{bilder/<>}",
     {i(1),i(2)}
 ),
 {condition = line_begin}
