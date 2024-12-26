@@ -1,45 +1,35 @@
 % LuaLateX------------------------------------------------------------------
 
 %! TeX program=lualatex
-%\usepackage{amsmath}
-\usepackage{amssymb}
-%\usepackage{fontspec}
-\usepackage{unicode-math}   % lädt fontspec
-\usepackage{luacode}
-%\usepackage{lualatex-math}
 
+\usepackage{mathtools}
+\usepackage{amssymb}
 
 % Sprache ------------------------------------------------------------
 
-%\usepackage[T1]{fontenc} % nicht mit LuaLateX
 \usepackage{lmodern}
 \usepackage[ngerman]{babel}
 \usepackage{hyphenat}
-%\usepackage{parskip} % Konflikt mit KOMA -Script -> in documentclass
 
 \setlength{\textheight}{720pt}
-% -------------------------------------------------------------------
 
 % Farben-----------------------------------------------------------
 \usepackage[dvipsnames]{xcolor}
-%---------------------------------------------------------------------
+
 % TikZ--------------------------------------------------------------- 
 
 \usepackage[siunitx]{circuitikz}
-\ctikzset{european resistors, 
-    bipoles/cuteswitch/thickness=0.25,
+    \ctikzset{european resistors, 
+	bipoles/cuteswitch/thickness=0.25,
+	}
+
+    \usetikzlibrary{arrows, shadows, positioning, shapes.symbols, shadings, patterns}
+
+    \DeclareSIUnit{\liter}{$\ell$}
+    \sisetup{
+	locale = DE,
+	per-mode = fraction,
     }
-
-\usetikzlibrary{arrows, shadows, positioning, shapes.symbols, shadings, patterns}
-
-\usepackage{siunitx}
-\DeclareSIUnit{\liter}{$\ell$}
-\sisetup{
-    locale = DE,
-    per-mode = fraction,
-    %exponent-to-prefix,
-    %prefixes-as-symbols = false,
-}
 
 % Plots ---------------------------------------------------------------
 \usepackage{pgfplots}
@@ -55,31 +45,31 @@
 
 \usepackage{graphicx}
 
-
 % schickere Tabellen
 \usepackage{booktabs}
 
 % Mathe/Physik ------------------------------------------------------
 
 \usepackage{cancel}
-\renewcommand{\CancelColor}{\color{gray}}
+    \renewcommand{\CancelColor}{\color{gray}}
 
 \usepackage{esvect} %Vektorpfeile
 
-%--------------------------------------------------------------------
 
 % Pimp my document--------------------------------------------------
 
 \usepackage{fancyhdr}
 \usepackage{tasks}
-\settasks{after-item-skip = 1ex, after-skip=2ex}
+    \settasks{after-item-skip = 1ex, after-skip=2ex}
 \usepackage{soul} % highlight
+
+% Boxen--------------------------------------------------------------
 \usepackage[framemethod=TikZ]{mdframed}
 
-%-------------------------------------------------------------------
-\usepackage{tcolorbox}
-\tcbuselibrary{skins}
-%\usepackage{fontawesome} % veraltet
+\usepackage[most]{tcolorbox}
+    \tcbuselibrary{skins}
+
+% -------------------icons/emoji -----------------------------------
 \usepackage{fontawesome5}
 \usepackage{emoji}
 % sonst------------------------------------------------------------
@@ -96,16 +86,16 @@
 
 % exams
 \usepackage{exsheets}
-\SetupExSheets[question]{type=exam}
-\SetupExSheets{solution/print=false}
+    \SetupExSheets[question]{type=exam}
+    \SetupExSheets{solution/print=false}
 
-% Punkt zu Komma 2.5 wird zu 2,5 
-\ExplSyntaxOn
-\cs_set_protected:Npn \exsheets_num:n #1
- {
-  \num{\fp_eval:n{#1}}
- }
-\ExplSyntaxOff
+    % Punkt zu Komma 2.5 wird zu 2,5 
+    \ExplSyntaxOn
+    \cs_set_protected:Npn \exsheets_num:n #1
+    {
+	\num{\fp_eval:n{#1}}
+    }
+    \ExplSyntaxOff
 
 % Aufgabe box----------------------------------------------------
 \newcounter{aufg}
@@ -153,28 +143,69 @@
 
 %----------------------------------------------------------------    
 
-\newenvironment{kasten}[1][]{
-
-    \ifstrempty{#1}
-        {\mdfsetup{roundcorner=5pt,
-    backgroundcolor=lightgray!20,linecolor=gray, middlelinewidth=2pt,
-    shadow=true,
-    }}
-    {\mdfsetup{
-        frametitle={#1},
-        linecolor=gray, middlelinewidth=2pt, frametitlerule=true,
-        apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={shade,left
-        color=white, right color = lightgray!20}}},
-        frametitlerulecolor=black!60,
-        frametitlerulewidth=1pt,
-        innertopmargin=\topskip,
-        roundcorner=5pt,
-        backgroundcolor=lightgray!20, shadow=true,
-    }}
-    \begin{mdframed}[]
-    }
-    { \end{mdframed} }
-
+\makeatletter
+\newtcolorbox{kasten}[2][]{%
+enhanced, 
+breakable,
+colback=white,
+colframe= cyan!50!black,
+attach boxed title to top left={yshift=-2pt}, title={\textbf{#2}},
+boxed title size=standard,
+boxrule=0pt,
+boxed title style={%
+    sharp corners, 
+    rounded corners=northwest, 
+    colback=tcbcolframe, 
+    boxrule=0pt},
+sharp corners=north,
+overlay unbroken={%
+    \path[fill=tcbcolback] 
+        ([xshift=-2pt]title.south east) 
+        to[out=0, in=180] ([xshift=1.5cm]title.east)--
+        (title.east-|frame.east) |- 
+        ([xshift=-2pt]title.south east)--cycle;
+    \path[fill=tcbcolframe] (title.south east) 
+        to[out=0, in=180] ([xshift=1.5cm]title.east)--
+        (title.east-|frame.east)
+        [rounded corners=\kvtcb@arc] |- 
+        (title.north-|frame.north) 
+        [sharp corners] -| (title.south east);
+    \draw[line width=.5mm, rounded corners=\kvtcb@arc, 
+        tcbcolframe] 
+        (title.north west) rectangle 
+        (frame.south east);
+}, 
+overlay first={%
+    \path[fill=tcbcolback] 
+        ([xshift=-2pt]title.south east) 
+        to[out=0, in=180] ([xshift=1.5cm]title.east)--
+        (title.east-|frame.east) |- 
+        ([xshift=-2pt]title.south east)--cycle;
+    \path[fill=tcbcolframe] (title.south east) 
+        to[out=0, in=180] ([xshift=1.5cm]title.east)--
+        (title.east-|frame.east)
+        [rounded corners=\kvtcb@arc] |- 
+        (title.north-|frame.north) 
+        [sharp corners] -| (title.south east);
+    \draw[line width=.5mm, rounded corners=\kvtcb@arc, 
+        tcbcolframe] 
+        (frame.south west) |- (title.north) -| 
+        (frame.south east);
+}, 
+overlay middle={%
+    \draw[line width=.5mm, tcbcolframe] 
+    (frame.north west)--(frame.south west) 
+    (frame.north east)--(frame.south east);
+}, 
+overlay last={%
+    \draw[line width=.5mm, rounded corners=\kvtcb@arc, 
+        tcbcolframe] 
+        (frame.north west) |- (frame.south) -|
+        (frame.north east);
+}, 
+#1
+}
+\makeatother
 %------------------------------------------------------------------
 
 \newenvironment{bsp}[2][Beispiel]{%}[gray]{

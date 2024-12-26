@@ -1,6 +1,12 @@
 -- speichern
-vim.keymap.set('n', 'jj',':update<CR>')		
-vim.keymap.set('i','jj','<esc>:update<CR>')
+vim.keymap.set('n', 'ää',':update<CR>')		
+vim.keymap.set('i','ää','<esc>:update<CR>')
+
+-- Escape Alternative
+vim.keymap.set('i', 'üü', '<Esc>')
+
+
+-- tree 
 vim.keymap.set('n','<F3>',':NvimTreeToggle')
 
 -- klammern
@@ -29,6 +35,10 @@ vim.keymap.set({"i", "s"}, "<C-e>", function()	--aktuelle Wahl ändern
 		ls.change_choice(1)
 	end
 end, {silent = true})
+
+-- bufferline
+
+vim.keymap.set('n', 'bü', '<CMD>BufferLinePick<CR>')
 
 -- python
 vim.api.nvim_create_autocmd("FileType", {
