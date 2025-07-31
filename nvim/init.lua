@@ -2,7 +2,7 @@
 vim.g.maplocalleader = "ö"
 
 require "config/lazy"
-require "config/options"
+require "config/themes"
 require "config/keymappings"
 require "config/alpha-config"
 require "config/luasnip"

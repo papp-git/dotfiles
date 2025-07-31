@@ -1,0 +1,59 @@
+*{
+	border: none;
+	border-radius: 10px;
+	font-family: "Hack Nerd Font";
+	font-size: 10px;
+}
+
+window#waybar{
+	background: transparent;
+}
+
+#workspaces{
+	margin-top: 6px;
+	margin-left: 8px;
+	margin-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+	background: #fab387;
+	opacity: 0.7;
+	color: #161320;
+}
+
+#workspaces button{
+	color: white;
+}
+
+#workspaces button.active{
+	color: red;
+	border: none;
+}
+
+#workspaces button.empty{
+	color:blue;
+}
+
+#clock{
+	margin-top: 6px;
+	margin-left: 8px;
+	margin-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+	background: #b4befe;
+	color: #161320;
+}
+
+#battery,
+#network,
+#cpu{
+	margin-top: 6px;
+	margin-left: 8px;
+	margin-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+	background: #b4befe;
+	color: red;
+}

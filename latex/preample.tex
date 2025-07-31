@@ -4,6 +4,7 @@
 
 \usepackage{mathtools}
 \usepackage{amssymb}
+\usepackage{marvosym}
 
 % Sprache ------------------------------------------------------------
 
@@ -14,7 +15,7 @@
 \setlength{\textheight}{720pt}
 
 % Farben-----------------------------------------------------------
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames, table]{xcolor}
 
 % TikZ--------------------------------------------------------------- 
 
@@ -23,7 +24,12 @@
 	bipoles/cuteswitch/thickness=0.25,
 	}
 
-    \usetikzlibrary{arrows, shadows, positioning, shapes.symbols, shadings, patterns}
+    \tikzset{
+	achse/.style={very thick, -latex},
+	koor/.style={color=lightgray!60,step=0.5},
+    }
+
+    \usetikzlibrary{arrows, shadows, positioning, shapes.symbols, shadings, patterns, intersections}
 
     \DeclareSIUnit{\liter}{$\ell$}
     \sisetup{
@@ -232,6 +238,55 @@ overlay last={%
 
 % ---------------------------------------------------------------
 
+\newenvironment{uebung}[1]{%
+    \begin{tikzpicture}%[#1]%
+        \def\uebungname{#1}%
+        \node [draw,inner sep=1.5ex,text width=\textwidth, fill=Cerulean!5, drop shadow, 
+	    rounded corners]% good options: minimum height, minimum width
+            (BOXCONTENT) \bgroup\rule{0pt}{3ex}\ignorespaces
+}{%
+        \egroup;
+        \node [right,inner xsep=1em,fill=Cerulean!75,outer sep=0pt,text height=2ex,text depth=.5ex] (BOXNAME) 
+	    at ([shift={(-1em,0pt)}]BOXCONTENT.north west) {\large \textsc{\uebungname}};
+        \fill[Cerulean] (BOXNAME.north east) -- +(-1em,1em) -- +(-1em,0) -- cycle;
+        \fill[Cerulean] (BOXNAME.south west) -- +(1em,-1em) -- +(1em,0) -- cycle;
+    \end{tikzpicture}
+}
+
+% --------------------------------------------------------------
+\newcommand{\ueben}[1][Übungen]{
+    \begin{figure}[!h]
+	\centering
+	\huge
+	\begin{tikzpicture}
+	    \node [right,inner xsep=5em,fill=Cerulean!75,outer sep=0pt,
+		text height=2ex,text depth=.5ex] (BOXNAME) 
+		{\emoji{abacus}~\textsc{#1}~ 
+		\emoji{woman-technologist-medium-skin-tone}};
+	    \fill[Cerulean] (BOXNAME.north east) -- +(-1em,1em) -- +(-1em,0) -- cycle;
+	    \fill[Cerulean] (BOXNAME.south west) -- +(1em,-1em) -- +(1em,0) -- cycle;
+	\end{tikzpicture}
+\end{figure}
+}
+
+%-------------------------------------------------------------------
+\newcommand{\thema}[2]{
+\pgfmathsetmacro{\myscale}{\textwidth/16.85cm}%
+\begin{tikzpicture}[nodes={inner sep=0pt,outer sep=0pt},scale=\myscale]
+ \fill[violet!90, rounded corners]  (0,0) rectangle (18.85,3.25);
+ \fill[violet!30] (10,0) to[out=14,in=-140] (17.32,3.25)--
+  (17.6,3.25) to[out=-140,in=15] (11.7,0) -- cycle;
+ \fill[violet!65, rounded corners] (17.6,3.25) to[out=-140,in=15] (11.7,0) -| (18.85,3.25) -- cycle;
+ \node[anchor=south west,text=white,font=\sffamily\bfseries,scale=3*\myscale] 
+     at (0.5,1.5)
+     {#1};
+ \node[anchor=south east,text=white,font=\sffamily\bfseries,scale=2*\myscale] 
+     at (18.5,0.2) {#2};
+\end{tikzpicture}
+}
+
+% ------------------------------------------------------------------
+
 \newcommand{\onestar}{\color{orange} \faStar~\faStar[regular]~\faStar[regular]}
 \newcommand{\twostar}{\color{orange}\faStar~\faStar~\faStar[regular]}
 \newcommand{\threestar}{\color{orange}\faStar~\faStar~\faStar}
@@ -243,6 +298,7 @@ overlay last={%
 \newcommand{\beobachtung}{\faEye~ Beobachtung:}
 \newcommand{\auswertung}{\faEdit~ Auswertung:}
 
+% ----------------------------------------------------------------------------------
 % Zeichensätze
 % -------------------------------------------------------------------
 

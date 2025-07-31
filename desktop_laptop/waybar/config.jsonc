@@ -1,0 +1,62 @@
+{
+"layer":	"top",
+"modules-left":	["hyprland/workspaces", "wlr/taskbar"],
+"modules-center":["clock"],
+"modules-right": ["battery", "network", "cpu"],
+
+"hyprland/workspaces":{
+	"format": "{icon}",
+	"format-icons":{
+		"1": "",
+		"2": "",
+		"3": "",
+		"4": "",
+		"active": "",
+		"default": "",
+		"empty": "",
+	},
+	"persistent-workspaces":{
+		"eDP-1": [1,2,3,4]
+	}
+},
+
+"clock":{
+	"timezone": "Europe/Berlin",
+	"locale": "de_DE.UTF-8",
+	"format": "{:L%a, %d.%B %H:%M}",
+},
+
+"network":{
+	"format": "{ifname}",
+	"format-wifi": "{essid} ({signalStrength}%) ",
+	"format-disconnected": "",
+	"format-disabled": "",
+},
+
+"battery": {
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+	"format": "<span color='#28CD41'> {icon} </span>{capacity}% ",
+    	"format-charging": " 󱐋{capacity}%",
+	"interval": 1,
+    	"format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"],
+    	"tooltip": true
+    },
+
+"wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "tooltip": false,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+       "Alacritty"
+    ],
+    "rewrite": {
+        "Firefox Web Browser": "Firefox",
+    }
+},
+
+}

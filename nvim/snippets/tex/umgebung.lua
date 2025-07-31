@@ -18,6 +18,43 @@ s({trig="beg", snippetType="autosnippet", dscr="A generic new environmennt"},
   ),
   {condition = line_begin}
 ),
+
+-- Koordinatengitter 
+s({trig="gtt", snippetType="autosnippet", dscr="Koordinatengitter"},
+  fmta(
+    [[
+	\begin{tikzpicture}
+		\draw[achse](<>,0)--(<>,0)node[above]{\(x\)};
+		\draw[achse](0,<>)--(0,<>)node[right]{\(y\)};
+		\draw[koor](<>,<>)grid(<>,<>);
+		
+		\node[below left] at (0,0){0};
+
+		\foreach \x in {<>}
+			\draw(\x,0.1)--++(0,-0.2)node[below]{\x};
+		\foreach \y in {<>}
+			\draw(0.1,\y)--++(-0.2,0)node[left]{\y};
+		
+		<>
+
+	\end{tikzpicture}
+    ]],
+    {
+      i(1),
+      i(2),
+      i(3),
+      i(4),
+      rep(1),
+      rep(3),
+      rep(2),
+      rep(4),
+      i(5),
+      i(6),
+      i(7),
+    }
+  ),
+  {condition = line_begin}
+),
 -- minipage 
 s({trig = "mip", snippetType="autosnippet", dscr="minipage"},
  fmta(
