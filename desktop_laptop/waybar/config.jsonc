@@ -1,8 +1,8 @@
 {
 "layer":	"top",
-"modules-left":	["hyprland/workspaces", "wlr/taskbar"],
+"modules-left":	["hyprland/workspaces", "tray", "wlr/taskbar"],
 "modules-center":["clock"],
-"modules-right": ["battery", "network", "cpu"],
+"modules-right": ["custom/notification","battery", "network", "custom/pacman", "temperature", "cpu"],
 
 "hyprland/workspaces":{
 	"format": "{icon}",
@@ -20,6 +20,16 @@
 	}
 },
 
+"tray":{
+	"icon-size":20,
+	"show-passive-items": true,
+	"spacing": 10,
+	"icons":
+	{
+		"synology-drive": "~/.local/share/icons/16x16/apps/Drive_16.png",
+	}
+},
+
 "clock":{
 	"timezone": "Europe/Berlin",
 	"locale": "de_DE.UTF-8",
@@ -28,9 +38,9 @@
 
 "network":{
 	"format": "{ifname}",
-	"format-wifi": "{essid} ({signalStrength}%) ",
-	"format-disconnected": "",
-	"format-disabled": "",
+	"format-wifi": "{essid} ({signalStrength}%)    {bandwidthDownBytes}  {bandwidthUpBytes}",
+	"format-disconnected": "󰖪",
+	"format-disabled": "󱚵",
 },
 
 "battery": {
@@ -47,16 +57,49 @@
 
 "wlr/taskbar": {
     "format": "{icon}",
-    "icon-size": 14,
+    "icon-size": 20,
     "tooltip": false,
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
-       "Alacritty"
+       "kitty"
     ],
     "rewrite": {
         "Firefox Web Browser": "Firefox",
     }
 },
 
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+
+  "custom/pacman": {
+    "format": "{}  ",
+    "interval": 3600,                     // every hour
+    "exec": "checkupdates | wc -l",       
+    "signal": 8
+  },
+
+  "temperature": {
+    "format": "{temperatureC}°C "
+  }
 }

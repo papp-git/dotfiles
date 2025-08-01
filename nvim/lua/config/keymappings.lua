@@ -2,12 +2,9 @@
 vim.keymap.set('n', 'ää',':update<CR>')		
 vim.keymap.set('i','ää','<esc>:update<CR>')
 
--- Escape Alternative
-vim.keymap.set('i', 'üü', '<Esc>')
-
 
 -- tree 
-vim.keymap.set('n','<F3>',':NvimTreeToggle')
+vim.keymap.set('n','tt',':NvimTreeToggle<ENTER>')
 
 -- klammern
 vim.keymap.set('i', '(', '()<left>')

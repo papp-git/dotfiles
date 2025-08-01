@@ -1,5 +1,6 @@
 
 vim.g.maplocalleader = "ö"
+vim.wo.number = true -- Zeilennummerierung 
 
 require "config/lazy"
 require "config/themes"
