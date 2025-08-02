@@ -1,8 +1,8 @@
 {
 "layer":	"top",
-"modules-left":	["hyprland/workspaces", "tray", "wlr/taskbar"],
-"modules-center":["clock"],
-"modules-right": ["custom/notification","battery", "network", "custom/pacman", "temperature", "cpu"],
+"modules-left":	["clock", "custom/updates", "tray", "wlr/taskbar"],
+"modules-center":["hyprland/workspaces"],
+"modules-right": ["custom/notification","battery", "network", "temperature"],
 
 "hyprland/workspaces":{
 	"format": "{icon}",
@@ -16,7 +16,7 @@
 		"empty": "",
 	},
 	"persistent-workspaces":{
-		"eDP-1": [1,2,3,4]
+		"eDP-1": [1,2,3,4,5]
 	}
 },
 
@@ -91,13 +91,16 @@
     "escape": true
   },
 
-
-  "custom/pacman": {
-    "format": "{}  ",
-    "interval": 3600,                     // every hour
-    "exec": "checkupdates | wc -l",       
-    "signal": 8
-  },
+  "custom/updates": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+        "has-updates": "󱍷",
+        "updated": ""
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --no-zero-output"
+},
 
   "temperature": {
     "format": "{temperatureC}°C "

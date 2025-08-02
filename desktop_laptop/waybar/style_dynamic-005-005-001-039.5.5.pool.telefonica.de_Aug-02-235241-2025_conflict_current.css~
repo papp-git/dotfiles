@@ -16,7 +16,7 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: rgba(166, 218, 149, 1);
+	background: #fab387;
 	opacity: 0.6;
 	color: #161320;
 }
@@ -51,7 +51,7 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: rgba(245, 189, 230,1);
+	background: rgba(245, 189, 230);
 	color: black;
 }
 
@@ -89,7 +89,7 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: rgba(202, 211, 245, 0.6);
+	background: #dc8a78;
 }
 
 #taskbar.empty{
