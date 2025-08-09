@@ -1,6 +1,5 @@
-@import "colors-waybar.css";
-
-*{ border: none;
+*{
+	border: none;
 	border-radius: 10px;
 	font-family: "Hack Nerd Font";
 	font-size: 10px;
@@ -17,17 +16,18 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: @color4;
+	background: rgba(255,2555,141,1);
+	opacity: 0.6;
 	color: #161320;
-	border: 3px solid black  ;
 }
 
 #workspaces button{
-	color: rgba(150,10,20,1);
+	color: red;
 }
 
 #workspaces button.active{
-	color: rgba(100,10,20,1);
+	icon-size: 30px;
+	color: red;
 	border: none;
 }
 
@@ -42,9 +42,8 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: @color2;
+	background: rgba(136, 57, 239,0.8);
 	color: black;
-	border: 3px solid rgb(172, 176, 190);
 }
 #custom-updates{
 	font-size: 24px;
@@ -54,9 +53,8 @@ window#waybar{
 	padding-left: 6px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: @color1;
+	background: rgba(245, 189, 230,1);
 	color: black;
-	border: 2px solid rgb(188, 192, 204);
 }
 
 #battery
@@ -67,9 +65,8 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background:@color6;
+	background: rgba(220, 138, 120,0.4);
 	color: black;
-	border: 3px solid rgb(92, 95, 119);
 }
 #network
 {
@@ -79,9 +76,8 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: @color7;
+	background: rgba(116, 199, 236,1);
 	color: black;
-	border: 3px solid rgb(108, 111, 133);
 }
 
 #temperature
@@ -93,9 +89,8 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: @color8;
+	background: rgba(243, 139, 168,1);
 	color: black;
-	border: 3px solid rgb(124, 127, 147);
 }
 
 #custom-notification {
@@ -106,9 +101,8 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: @color6;
-	color: black;
-	border: 3px solid rgb(92, 95, 119);
+	background: rgba(203, 166, 247,1);
+	color: red;
 }
 
 #taskbar{
@@ -119,12 +113,10 @@ window#waybar{
 	padding-right: 10px;
 	border-radius: 10px;
 	background: rgba(202, 211, 245, 0.6);
-	border: 3px solid rgb(156, 160, 176); 
 }
 
 #taskbar.empty{
 	background: transparent;
-	border: transparent;
 }
 
 #tray{
@@ -134,18 +126,5 @@ window#waybar{
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	background: @color3;
-	border: 3px solid rgb(156, 160, 176); 
-}
-
-#pulseaudio{
-	margin-top: 6px;
-	margin-left: 12px;
-	margin-bottom: 0px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-radius: 10px;
-	background: @color5;
-	color: black;
-	border: 3px solid rgb(76, 79, 105);
+	background: #f2e0dc;
 }

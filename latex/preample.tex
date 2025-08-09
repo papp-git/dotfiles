@@ -1,37 +1,47 @@
+%
+%   ██████╗ ██████╗ ███████╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗
+%   ██╔══██╗██╔══██╗██╔════╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝
+%   ██████╔╝██████╔╝█████╗  ███████║██╔████╔██║██████╔╝██║     █████╗  
+%   ██╔═══╝ ██╔══██╗██╔══╝  ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  
+%   ██║     ██║  ██║███████╗██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗
+%   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝
+                                                                   
 % LuaLateX------------------------------------------------------------------
 
 %! TeX program=lualatex
 
+% Mathe 
 \usepackage{mathtools}
 \usepackage{amssymb}
-\usepackage{marvosym}
+\usepackage{mathrsfs} % \mathscr{ABC}-Font-Kalligraphie
+\usepackage{cancel}
+    \renewcommand{\CancelColor}{\color{gray}}
+\usepackage{esvect} %Vektorpfeile
+
+\usepackage{marvosym} % Eurosymbol  
 
 % Sprache ------------------------------------------------------------
-
 \usepackage{lmodern}
 \usepackage[ngerman]{babel}
 \usepackage{hyphenat}
-
-\setlength{\textheight}{720pt}
 
 % Farben-----------------------------------------------------------
 \usepackage[dvipsnames, table]{xcolor}
 
 % TikZ--------------------------------------------------------------- 
-
 \usepackage[siunitx]{circuitikz}
     \ctikzset{european resistors, 
 	bipoles/cuteswitch/thickness=0.25,
 	}
 
-    \tikzset{
+\tikzset{
 	achse/.style={very thick, -latex},
 	koor/.style={color=lightgray!60,step=0.5},
     }
 
-    \usetikzlibrary{arrows, shadows, positioning, shapes.symbols, shadings, patterns, intersections}
+\usetikzlibrary{arrows, shadows, positioning, shapes.symbols, shadings, patterns, intersections}
 
-    \DeclareSIUnit{\liter}{$\ell$}
+\DeclareSIUnit{\liter}{$\ell$}
     \sisetup{
 	locale = DE,
 	per-mode = fraction,
@@ -40,10 +50,6 @@
 % Plots ---------------------------------------------------------------
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-
-% -----------------------\mathscr{ABC}-Font-Kalligraphie-----------------------------------
-\usepackage{mathrsfs}
-
 
 % tikz-Bilder importieren
 % \includestandalone
@@ -54,20 +60,12 @@
 % schickere Tabellen
 \usepackage{booktabs}
 
-% Mathe/Physik ------------------------------------------------------
-
-\usepackage{cancel}
-    \renewcommand{\CancelColor}{\color{gray}}
-
-\usepackage{esvect} %Vektorpfeile
-
-
 % Pimp my document--------------------------------------------------
-
 \usepackage{fancyhdr}
 \usepackage{tasks}
     \settasks{after-item-skip = 1ex, after-skip=2ex}
 \usepackage{soul} % highlight
+\setlength{\textheight}{720pt}
 
 % Boxen--------------------------------------------------------------
 \usepackage[framemethod=TikZ]{mdframed}
@@ -78,19 +76,18 @@
 % -------------------icons/emoji -----------------------------------
 \usepackage{fontawesome5}
 \usepackage{emoji}
-% sonst------------------------------------------------------------
 
+% sonst------------------------------------------------------------
 \usepackage{hyperref}
 \usepackage{eurosym}
 
-% ------------------------------------------------------------------
-
+% -------------------Kästchen------------------------------------------
 \newcommand{\kariert}[2]{
     \begin{tikzpicture}
     \draw[step=0.5cm,color=lightgray!60] (0,0) grid (#1 cm ,#2 cm);
     \end{tikzpicture}}
 
-% exams
+% exams--------------------------------------------------------
 \usepackage{exsheets}
     \SetupExSheets[question]{type=exam}
     \SetupExSheets{solution/print=false}
@@ -103,6 +100,14 @@
     }
     \ExplSyntaxOff
 
+%   :::    :::     :::      :::::::: ::::::::::: :::::::::: ::::    ::: 
+%   :+:   :+:    :+: :+:   :+:    :+:    :+:     :+:        :+:+:   :+: 
+%   +:+  +:+    +:+   +:+  +:+           +:+     +:+        :+:+:+  +:+ 
+%   +#++:++    +#++:++#++: +#++:++#++    +#+     +#++:++#   +#+ +:+ +#+ 
+%   +#+  +#+   +#+     +#+        +#+    +#+     +#+        +#+  +#+#+# 
+%   #+#   #+#  #+#     #+# #+#    #+#    #+#     #+#        #+#   #+#+# 
+%   ###    ### ###     ###  ########     ###     ########## ###    #### 
+
 % Aufgabe box----------------------------------------------------
 \newcounter{aufg}
 
@@ -113,24 +118,22 @@
     top=10pt, left=0pt, right=0pt,                                                   
     overlay={%
         \tikzset{overlay=false, anchor=west, rounded corners}
-        \node[fill=orange!20, text=black,xshift=0.5cm,draw,      % background and textcolor of "Exercise" box
+        \node[fill=orange!20, text=black,xshift=0.5cm,draw,      
+	% background and textcolor of "Exercise" box
               minimum height=1.5em] at (frame.north west) (box1){\textbf{Aufgabe
               \theaufg}}; % position of "Exercise" box
-        \node[text=orange, fill=white,draw,                % background and textcolor of difficulty rating box
-              right = 3mm of box1, ] (difficulty){#1};     % position of difficulty rating box
+        \node[text=orange, fill=white,draw,                
+	% background and textcolor of difficulty rating box
+              right = 3mm of box1, ] (difficulty){#1};     
+	% position of difficulty rating box
     }}
-
-%\newenvironment{aufgabe}[1][]{ 
-%        \refstepcounter{aufg} 
-%        \textbf{Aufgabe \theaufg} \hfill  #1} {\par} 
 
 \newcounter{loesung}
 \newenvironment{lsg}{ 
         \refstepcounter{loesung} 
         \textbf{Lösung \theloesung}} {}       
-% -----------------------------------------------------------------
 
-% Kästen ---------------------------------------------------------
+% Merke ---------------------------------------------------------
 \newenvironment{merke}[1][Merke]{
     \mdfsetup{
         frametitle={
@@ -147,7 +150,7 @@
     \begin{mdframed} \relax }
     {\end{mdframed}}
 
-%----------------------------------------------------------------    
+% Kasten ---------------------------------------------------------------    
 
 \makeatletter
 \newtcolorbox{kasten}[2][]{%
@@ -212,7 +215,8 @@ overlay last={%
 #1
 }
 \makeatother
-%------------------------------------------------------------------
+
+% Beispiel----------------------------------------------------------------
 
 \newenvironment{bsp}[2][Beispiel]{%}[gray]{
 
@@ -236,7 +240,7 @@ overlay last={%
     { \end{mdframed} }
 
 
-% ---------------------------------------------------------------
+% Übung ---------------------------------------------------------------
 
 \newenvironment{uebung}[1]{%
     \begin{tikzpicture}%[#1]%
@@ -253,7 +257,7 @@ overlay last={%
     \end{tikzpicture}
 }
 
-% --------------------------------------------------------------
+% Banner --------------------------------------------------------------
 \newcommand{\ueben}[1][Übungen]{
     \begin{figure}[!h]
 	\centering
@@ -269,7 +273,7 @@ overlay last={%
 \end{figure}
 }
 
-%-------------------------------------------------------------------
+% Banner ------------------------------------------------------------------
 \newcommand{\thema}[2]{
 \pgfmathsetmacro{\myscale}{\textwidth/16.85cm}%
 \begin{tikzpicture}[nodes={inner sep=0pt,outer sep=0pt},scale=\myscale]
@@ -285,22 +289,20 @@ overlay last={%
 \end{tikzpicture}
 }
 
-% ------------------------------------------------------------------
-
+% Sterne------------------------------------------------------------------
 \newcommand{\onestar}{\color{orange} \faStar~\faStar[regular]~\faStar[regular]}
 \newcommand{\twostar}{\color{orange}\faStar~\faStar~\faStar[regular]}
 \newcommand{\threestar}{\color{orange}\faStar~\faStar~\faStar}
 \newcommand{\onehalfstar}{\color{orange}\faStar~\faStarHalf*~\faStar[regular]}
 \newcommand{\twohalfstar}{\color{orange}\faStar~\faStar~\faStarHalf*}
 
+% Versuch 
 \newcommand{\versuch}{\faFlask~ Versuch:}
 \newcommand{\durchfuehrung}{\faTools~ Durchführung:}
 \newcommand{\beobachtung}{\faEye~ Beobachtung:}
 \newcommand{\auswertung}{\faEdit~ Auswertung:}
 
-% ----------------------------------------------------------------------------------
 % Zeichensätze
-% -------------------------------------------------------------------
 
 %\setmainfont{noto-serif}
 %\setsansfont{Open Sans}

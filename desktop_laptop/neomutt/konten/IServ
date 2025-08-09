@@ -1,0 +1,18 @@
+unmailboxes *
+
+set from = "xxx@ellental-gymnasien.de"
+set sendmail = "/usr/bin/msmtp -a IServ"
+set folder = "~/mail/IServ/"
+set spoolfile = "+INBOX"
+set postponed = "+INBOX.Drafts"
+set record = "+INBOX.Sent"
+set trash = "+INBOX.Trash"
+
+alias me "Stephan Papp" "xxx@ellental-gymnasien.de"
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+named-mailboxes "IServ" =INBOX 
+named-mailboxes "gesendet" =INBOX.Sent 

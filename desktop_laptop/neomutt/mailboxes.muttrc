@@ -1,0 +1,5 @@
+macro index,pager I '<enter-command>source ~/.config/neomutt/konten/IServ<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager N '<enter-command>source ~/.config/neomutt/konten/netcup<enter><change-folder>!<enter>;<check-stats>'
+
+#source ~/.config/neomutt/konten/IServ 
+source ~/.config/neomutt/konten/netcup #default 

@@ -1,0 +1,43 @@
+###################################################
+#### msmtp ########################################
+###################################################
+
+
+# Set default values for all following accounts.
+defaults
+protocol       smtp
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        ~/.msmtp.log 
+
+#################################################
+############### IServ ###########################
+#################################################
+
+account		IServ
+host		ellental-gymnasien.de
+port		587
+domain		IServ 
+from 		xxx@ellental-gymnasien.de
+user		xxx 
+passwordeval 	"pass Mail/IServ | head -n1"
+
+
+#################################################
+#################################################
+############### Netcup ##########################
+#################################################
+
+account		netcup 
+host		mx2e90.netcup.net 
+port		465
+domain		netcup  
+tls_starttls   	off
+from 		xxx@ellentalgymnasien.de
+user		xxx@ellentalgymnasien.de 
+passwordeval 	"pass Mail/netcup | head -n1"
+
+
+###############################################
+account default: IServ

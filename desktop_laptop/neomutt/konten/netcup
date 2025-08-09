@@ -1,0 +1,19 @@
+unmailboxes *
+
+set from = "s.papp@ellentalgymnasien.de"
+set sendmail = "/usr/bin/msmtp -a netcup"
+set folder = "~/mail/netcup/"
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set record = "+Sent"
+set trash = "+Trash"
+
+alias me "Stephan Papp" "xxx@ellentalgymnasien.de"
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+named-mailboxes "netcup" =INBOX
+named-mailboxes "gesendet" =Sent
+named-mailboxes "Montagsmail" =Schulleitung.Montagsmail

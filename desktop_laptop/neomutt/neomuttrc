@@ -1,0 +1,64 @@
+##################################################
+############ Neomutt #############################
+##################################################
+
+source ~/.config/neomutt/mailboxes.muttrc 
+#source ~/.config/neomutt/colors.muttrc
+source ~/.config/neomutt/aliases.muttrc
+source ~/.config/neomutt/gruvbox/colors-gruvbox-shuber.muttrc
+source ~/.config/neomutt/gruvbox/colors-gruvbox-shuber-extended.muttrc
+
+
+set editor = "nvim -c 'startinsert' -c 'set tw=80 et' -c 'set wrap' '+/^$'"
+
+set realname="Stephan Papp"
+set sort = "reverse-date"
+
+set alias_file = "~/.config/neomutt/aliases.muttrc"
+set sort_alias = alias #alternativ: address
+set reverse_alias = yes 
+source $alias_file
+
+set envelope_from=yes                       # übergibt msmtp den richtigen Absender
+set edit_headers                               # Header im Editor mitbearbeiten
+set attribution="%f schrieb am %d:"         # Zitatkennzeichnung
+set date_format="%a, %d. %b %y %H:%M"
+set index_format="%4C %Z %D %-22.22F (%?l?%4l&%4c?) %s"	# Format der Mail-Übersicht
+set use_from=yes                                                                
+set ssl_starttls=yes                                                            
+set ssl_force_tls=yes
+
+macro index O "<shell-escape>offlineimap <enter>" "run offlineimap to sync all mail"
+
+
+
+#################################################
+###########Sidebar - Folder #####################
+#################################################
+
+
+# set up the sidebar, default not visible
+set sidebar_width = 20
+set sidebar_visible = yes 
+# set sidebar_delim='|'
+# which mailboxes to list in the sidebar
+# mailboxes =INBOX 
+# color of folders with new mail
+color sidebar_new yellow default
+# ctrl-n, ctrl-p to select next, prev folder
+# ctrl-o to open selected folder
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+
+set sidebar_format = '%D%<F? [%F]>%* %<N?%N/>%S'
+
+# I don't need these. just for documentation purposes.
+# sidebar-scroll-up
+# sidebar-scroll-down
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible
+macro pager b '<enter-command>toggle sidebar_visible
+# Remap bounce-message function to "B"
+bind index B bounce-message

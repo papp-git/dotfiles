@@ -2,7 +2,7 @@
 
 # BEGIN_KITTY_THEME
 # Gruvbox Dark Soft
-include ~/.cache/wal/colors-kitty.conf
+include current-theme.conf
 # END_KITTY_THEME
 
 #: Fonts {{{
@@ -10,7 +10,8 @@ include ~/.cache/wal/colors-kitty.conf
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
-# font_family      Hack Nerd Font
+
+font_family      Hack Nerd Font
 # bold_font        auto
 # italic_font      auto
 # bold_italic_font auto
@@ -2790,11 +2791,3 @@ shell fish
 #: }}}
 
 #: }}}
-
-
-# BEGIN_KITTY_FONTS
-font_family      family='Hack Nerd Font' postscript_name=HackNF-Regular
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
-# END_KITTY_FONTS
